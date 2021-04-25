@@ -1,16 +1,7 @@
-// class Status(models.TextChoices):
-// PLACED = "Pl", "Placed"
-// PROCESSED = "Pr", "Processed"
-// PACKED = "Pk", "Packed"
-// SHIPPED = "Sh", "Shipped"
-// DELIVERED = "Dl", "Delivered"
-// REJECTED = "Rj", "Rejected"
-// RETURNED = "Rt", "Returned"
-// RECEIVED = "Rc", "Received"  # Received Back
-
 import { Address } from "cluster";
 import { IProduct } from "./Product";
 import { IUser } from "./User";
+import { Document } from "mongoose";
 
 export enum OrderStatus {
     Placed,
@@ -35,6 +26,7 @@ export interface IOrder {
     address: Address,
 }
 
+/*
 export class Order implements IOrder {
     public customer: IUser | null;
     public product: IProduct | null;
@@ -75,4 +67,9 @@ export class Order implements IOrder {
         this.placedOn = placedOn;
         this.address = address;
     }
+}
+*/
+
+export interface DOrder  extends IOrder, Document{
+
 }

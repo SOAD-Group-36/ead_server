@@ -12,7 +12,7 @@ export const pwdSaltRounds = 12;
 
 // Cookie Properties
 export const cookieProps = Object.freeze({
-    key: 'ExpressGeneratorTs',
+    key: 'ead_jwt_auth',
     secret: process.env.COOKIE_SECRET,
     options: {
         httpOnly: true,

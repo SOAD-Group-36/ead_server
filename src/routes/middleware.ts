@@ -33,3 +33,26 @@ export const adminMW = async (req: Request, res: Response, next: NextFunction) =
         });
     }
 };
+
+// Middleware to verify if user is an Seller
+export const SellerMW = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        // Get json-web-token
+        const jwt = req.signedCookies[cookieProps.key];
+        if (!jwt) {
+            throw Error('JWT not present in signed cookie.');
+        }
+        // Make sure user role is an Seller
+        const clientData = await jwtService.decodeJwt(jwt);
+        if (clientData.role === UserRoles.Seller) {
+            res.locals.userId = clientData.id;
+            next();
+        } else {
+            throw Error('JWT not present in signed cookie.');
+        }
+    } catch (err) {
+        return res.status(UNAUTHORIZED).json({
+            error: err.message,
+        });
+    }
+};

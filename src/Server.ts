@@ -8,6 +8,7 @@ import express, { NextFunction, Request, Response } from 'express';
 import 'express-async-errors';
 
 import BaseRouter from './routes';
+import DocsRouter from './swagger';
 import logger from '@shared/Logger';
 import { cookieProps } from '@shared/constants';
 
@@ -70,6 +71,16 @@ app.get('/users', (req: Request, res: Response) => {
     }
 });
 
+app.get('/sellers', (req: Request, res: Response) => {
+    const jwt = req.signedCookies[cookieProps.key];
+    if (!jwt) {
+        res.sendFile('login_seller.html', {root: viewsDir});
+    } else {
+        res.sendFile('users.html', {root: viewsDir});
+    }
+});
+
+app.use('/docs', DocsRouter);
 
 
 /************************************************************************************

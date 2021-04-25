@@ -20,14 +20,14 @@ export class Address implements IAddress {
         state: string,
         city: string,
         landmark: string,
-        house_no: string,
-        street_name: string,
+        houseNo: string,
+        streetName: string,
     ) {
         this.pincode = pincode;
         this.state = state;
         this.city = city;
         this.landmark = landmark;
-        this.houseNo = house_no;
-        this.streetName = street_name;
+        this.houseNo = houseNo;
+        this.streetName = streetName;
     }
 }

@@ -1,22 +1,22 @@
-import { IProduct } from '@entities/Product';
+import { IOrder, DOrder } from '@entities/Order';
 
 
 
-export interface IProductDao {
-    getOne: (email: string) => Promise<IProduct | null>;
-    getAll: () => Promise<IProduct[]>;
-    add: (user: IProduct) => Promise<void>;
-    update: (user: IProduct) => Promise<void>;
+export interface IOrderDao {
+    getOne: (email: string) => Promise<DOrder | null>;
+    getAll: () => Promise<DOrder[]>;
+    add: (user: IOrder) => Promise<void>;
+    // update: (user: IOrder) => Promise<void>;
     delete: (id: number) => Promise<void>;
 }
 
-class ProductDao implements IProductDao {
+class OrderDao implements IOrderDao {
 
 
     /**
      * @param email
      */
-    public getOne(email: string): Promise<IProduct | null> {
+    public getOne(email: string): Promise<DOrder | null> {
         // TODO
         return Promise.resolve(null);
     }
@@ -25,7 +25,7 @@ class ProductDao implements IProductDao {
     /**
      *
      */
-    public getAll(): Promise<IProduct[]> {
+    public getAll(): Promise<DOrder[]> {
         // TODO
         return Promise.resolve([]);
     }
@@ -35,7 +35,7 @@ class ProductDao implements IProductDao {
      *
      * @param user
      */
-    public async add(user: IProduct): Promise<void> {
+    public async add(user: IOrder): Promise<void> {
         // TODO
         return Promise.resolve(undefined);
     }
@@ -45,7 +45,7 @@ class ProductDao implements IProductDao {
      *
      * @param user
      */
-    public async update(user: IProduct): Promise<void> {
+    public async update(user: IOrder): Promise<void> {
         // TODO
         return Promise.resolve(undefined);
     }
@@ -61,4 +61,4 @@ class ProductDao implements IProductDao {
     }
 }
 
-export default ProductDao;
+export default OrderDao;
