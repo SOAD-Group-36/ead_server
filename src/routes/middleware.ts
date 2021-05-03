@@ -15,7 +15,10 @@ const { UNAUTHORIZED } = StatusCodes;
 export const adminMW = async (req: Request, res: Response, next: NextFunction) => {
     try {
         // Get json-web-token
-        const jwt = req.signedCookies[cookieProps.key];
+        let jwt = req.signedCookies[cookieProps.key];
+        if (!jwt) {
+            jwt = req.headers.authorization;
+        }
         if (!jwt) {
             throw Error('JWT not present in signed cookie.');
         }
@@ -38,7 +41,10 @@ export const adminMW = async (req: Request, res: Response, next: NextFunction) =
 export const SellerMW = async (req: Request, res: Response, next: NextFunction) => {
     try {
         // Get json-web-token
-        const jwt = req.signedCookies[cookieProps.key];
+        let jwt = req.signedCookies[cookieProps.key];
+        if (!jwt) {
+            jwt = req.headers.authorization;
+        }
         if (!jwt) {
             throw Error('JWT not present in signed cookie.');
         }

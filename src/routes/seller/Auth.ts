@@ -26,7 +26,7 @@ router.post('/login', async (req: IRequest, res: Response) => {
         });
     }
     // Fetch seller
-    const seller = await sellerDao.getOne(email);
+    const seller = await sellerDao.getOneEmail(email);
     if (!seller) {
         return res.status(UNAUTHORIZED).json({
             error: loginFailedErr,
@@ -43,11 +43,12 @@ router.post('/login', async (req: IRequest, res: Response) => {
     const jwt = await jwtService.getJwt({
         id: seller.id,
         role: seller.role,
+        name: seller.name,
     });
     const { key, options } = cookieProps;
     res.cookie(key, jwt, options);
     // Return
-    return res.status(OK).end();
+    return res.status(OK).json({ jwt });
 });
 
 

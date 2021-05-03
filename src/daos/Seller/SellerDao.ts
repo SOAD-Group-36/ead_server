@@ -16,7 +16,16 @@ class SellerDao implements ISellerDao {
     /**
      * @param email
      */
-    public async getOne(id: string): Promise<DSeller | null> {
+    public async getOneEmail(email: string): Promise<DSeller | null> {
+        try {
+            return await Seller.findOne({ "email": email });
+        } catch (error) {
+            console.error(error);
+            return null;
+        }
+    }
+
+     public async getOne(id: string): Promise<DSeller | null> {
         try {
             return await Seller.findOne({ "_id": id });
         } catch (error) {

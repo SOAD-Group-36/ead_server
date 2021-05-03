@@ -1,5 +1,5 @@
 import { ISeller } from "./Seller";
-import {Document, Schema} from "mongoose";
+import {Document, Types} from "mongoose";
 
 export interface IProduct {
     id?: any;
@@ -7,7 +7,7 @@ export interface IProduct {
     description: string;
     price: number;
     seller?: ISeller | null;
-    sellerId: Schema.Types.ObjectId;
+    sellerId: Types.ObjectId;
     stock: number;
 }
 
