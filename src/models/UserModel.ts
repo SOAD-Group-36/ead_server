@@ -5,7 +5,7 @@ interface IUserModel extends mongoose.Model<DUser> {
     build(attr: IUser): DUser
 }
 
-const UserSchema = new mongoose.Schema({
+export const UserSchema = new mongoose.Schema({
     name: { type: String, required: true },
     email: { type: String, required: true },
     pwdHash: { type: String, required: true },

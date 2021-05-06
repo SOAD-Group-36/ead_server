@@ -18,7 +18,7 @@ class SellerDao implements ISellerDao {
      */
     public async getOneEmail(email: string): Promise<DSeller | null> {
         try {
-            return await Seller.findOne({ "email": email });
+            return await Seller.findOne({ "email": email }, {pwdHash: 1});
         } catch (error) {
             console.error(error);
             return null;
@@ -27,7 +27,7 @@ class SellerDao implements ISellerDao {
 
      public async getOne(id: string): Promise<DSeller | null> {
         try {
-            return await Seller.findOne({ "_id": id });
+            return await Seller.findOne({ "_id": id }, {pwdHash: 0});
         } catch (error) {
             console.error(error);
             return null;
@@ -40,7 +40,7 @@ class SellerDao implements ISellerDao {
      */
     public async getAll(): Promise<DSeller[]> {
         try {
-            return await Seller.find({});
+            return await Seller.find({}, {pwdHash: 0});
         } catch (error) {
             console.error(error);
             return [];

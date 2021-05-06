@@ -41,20 +41,25 @@ export const adminMW = async (req: Request, res: Response, next: NextFunction) =
 export const SellerMW = async (req: Request, res: Response, next: NextFunction) => {
     try {
         // Get json-web-token
-        let jwt = req.signedCookies[cookieProps.key];
-        if (!jwt) {
-            jwt = req.headers.authorization;
-        }
-        if (!jwt) {
+        let jwt;
+        // if (!jwt) {
+            console.log(req.headers)
+            jwt = req.headers['authorization'];
+            console.log(jwt)
+        // }
+        if (jwt == undefined || jwt == null) {
             throw Error('JWT not present in signed cookie.');
         }
         // Make sure user role is an Seller
         const clientData = await jwtService.decodeJwt(jwt);
         if (clientData.role === UserRoles.Seller) {
+            console.log(res.locals)
+            console.log(clientData)
             res.locals.userId = clientData.id;
             next();
         } else {
-            throw Error('JWT not present in signed cookie.');
+            // throw Error('JWT not present in signed cookie.');
+            next()
         }
     } catch (err) {
         return res.status(UNAUTHORIZED).json({

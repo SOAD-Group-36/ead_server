@@ -56,7 +56,7 @@ router.post('/add', SellerMW,
 
 
 /******************************************************************************
- *                      Get All Products - "GET /api/product/:id"
+ *                      Get one Products - "GET /api/product/:id"
  ******************************************************************************/
 
 router.get('/:id', async (req: Request, res: Response) => {

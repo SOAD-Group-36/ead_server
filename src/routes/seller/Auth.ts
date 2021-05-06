@@ -20,6 +20,7 @@ const { BAD_REQUEST, OK, UNAUTHORIZED } = StatusCodes;
 router.post('/login', async (req: IRequest, res: Response) => {
     // Check email and password present
     const { email, password } = req.body;
+    console.log(req.body)
     if (!(email && password)) {
         return res.status(BAD_REQUEST).json({
             error: paramMissingError,

@@ -40,7 +40,6 @@ class ProductDao implements IProductDao {
      * @param user
      */
     public async add(product: IProduct): Promise<void> {
-        // TODO
         try {
             await Product.build(product).save();
         } catch (error) {
@@ -54,7 +53,6 @@ class ProductDao implements IProductDao {
     //  * @param user
     //  */
     // public async update(user: IProduct): Promise<void> {
-    //     // TODO
     //     return Promise.resolve(undefined);
     // }
 

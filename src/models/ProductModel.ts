@@ -5,7 +5,7 @@ interface IProductModel extends mongoose.Model<DProduct> {
     build(attr: IProduct): DProduct
 }
 
-const ProductSchema = new mongoose.Schema({
+export const ProductSchema = new mongoose.Schema({
     name: { type: String, required: true },
     description: { type: String, required: true },
     price: { type: Number, required: true },
